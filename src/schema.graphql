@@ -1,0 +1,14 @@
+schema {
+  query: Query
+}
+
+type Query {
+  hello: String!
+}
+
+type User {
+  id: ID!
+  name: String!
+  password: String!
+  email: String!
+}
