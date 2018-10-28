@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon -x ts-node --no-cache src/index.ts",
-    "schema": "ts-node src/schema/index.ts"
+    "schema": "ts-node src/schema/index.ts && graphqlgen",
+    "prova": "ts-node prova.ts"
   },
   "dependencies": {
     "apollo-server-express": "^2.1.0",

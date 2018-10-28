@@ -7,4 +7,5 @@ type User {
 
 type Query {
     hello: String!
+    msg(text: String!): String!
 }

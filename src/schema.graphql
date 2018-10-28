@@ -4,6 +4,7 @@ schema {
 
 type Query {
   hello: String!
+  msg(text: String!): String!
 }
 
 type User {

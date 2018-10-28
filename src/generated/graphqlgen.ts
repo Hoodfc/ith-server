@@ -7,9 +7,20 @@ import { User } from "../types";
 export namespace QueryResolvers {
   export const defaultResolvers = {};
 
+  export interface ArgsMsg {
+    text: string;
+  }
+
   export type HelloResolver = (
     parent: {},
     args: {},
+    ctx: Context,
+    info: GraphQLResolveInfo
+  ) => string | Promise<string>;
+
+  export type MsgResolver = (
+    parent: {},
+    args: ArgsMsg,
     ctx: Context,
     info: GraphQLResolveInfo
   ) => string | Promise<string>;
@@ -18,6 +29,13 @@ export namespace QueryResolvers {
     hello: (
       parent: {},
       args: {},
+      ctx: Context,
+      info: GraphQLResolveInfo
+    ) => string | Promise<string>;
+
+    msg: (
+      parent: {},
+      args: ArgsMsg,
       ctx: Context,
       info: GraphQLResolveInfo
     ) => string | Promise<string>;

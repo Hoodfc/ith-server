@@ -5,5 +5,6 @@ import { QueryResolvers } from "../graphqlgen";
 
 export const Query: QueryResolvers.Type = {
   ...QueryResolvers.defaultResolvers,
-  hello: parent => ""
+  hello: parent => "",
+  msg: (parent, args) => ""
 };
