@@ -1,6 +1,8 @@
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
+import "reflect-metadata";
 import genSchema from "./utils/genSchema";
+import { createConnection } from "typeorm";
 
 const PORT = process.env.PORT || 3500;
 const app = express();
@@ -13,9 +15,11 @@ const server = new ApolloServer({
 server.applyMiddleware({ app });
 
 app.get("/api", (req, res) => {
-    res.send({hello: 'there'});
-})
+  res.send({ hello: "there" });
+});
 
-app.listen(PORT, () => {
-    console.log(`Server running at port ${PORT}`)
+createConnection().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running at port ${PORT}`);
+  });
 });

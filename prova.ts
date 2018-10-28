@@ -1,3 +1,4 @@
+// ! test for resolvers
 import {fileLoader, mergeResolvers } from "merge-graphql-schemas";
 import * as path from "path";
 
