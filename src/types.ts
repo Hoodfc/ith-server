@@ -1,5 +1,5 @@
 export interface Context {
-    data: string
+    data: Data
 }
 
 export interface User {
@@ -7,4 +7,8 @@ export interface User {
     name: string
     password: string
     email: string
+}
+
+export interface Data {
+    users: User[]
 }

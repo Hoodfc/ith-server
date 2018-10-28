@@ -1,8 +1,8 @@
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
 import "reflect-metadata";
-import genSchema from "./utils/genSchema";
 import { createConnection } from "typeorm";
+import genSchema from "./utils/genSchema";
 
 const PORT = process.env.PORT || 3500;
 const app = express();

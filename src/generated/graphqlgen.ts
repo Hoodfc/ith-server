@@ -7,8 +7,8 @@ import { User } from "../types";
 export namespace QueryResolvers {
   export const defaultResolvers = {};
 
-  export interface ArgsMsg {
-    text: string;
+  export interface ArgsGetUser {
+    name: string;
   }
 
   export type HelloResolver = (
@@ -18,12 +18,19 @@ export namespace QueryResolvers {
     info: GraphQLResolveInfo
   ) => string | Promise<string>;
 
-  export type MsgResolver = (
+  export type GetUserResolver = (
     parent: {},
-    args: ArgsMsg,
+    args: ArgsGetUser,
     ctx: Context,
     info: GraphQLResolveInfo
-  ) => string | Promise<string>;
+  ) => User | null | Promise<User | null>;
+
+  export type GetAllUsersResolver = (
+    parent: {},
+    args: {},
+    ctx: Context,
+    info: GraphQLResolveInfo
+  ) => User[] | Promise<User[]>;
 
   export interface Type {
     hello: (
@@ -33,12 +40,45 @@ export namespace QueryResolvers {
       info: GraphQLResolveInfo
     ) => string | Promise<string>;
 
-    msg: (
+    getUser: (
       parent: {},
-      args: ArgsMsg,
+      args: ArgsGetUser,
       ctx: Context,
       info: GraphQLResolveInfo
-    ) => string | Promise<string>;
+    ) => User | null | Promise<User | null>;
+
+    getAllUsers: (
+      parent: {},
+      args: {},
+      ctx: Context,
+      info: GraphQLResolveInfo
+    ) => User[] | Promise<User[]>;
+  }
+}
+
+export namespace MutationResolvers {
+  export const defaultResolvers = {};
+
+  export interface ArgsCreateUser {
+    name: string;
+    email: string | null;
+    password: string;
+  }
+
+  export type CreateUserResolver = (
+    parent: {},
+    args: ArgsCreateUser,
+    ctx: Context,
+    info: GraphQLResolveInfo
+  ) => User | null | Promise<User | null>;
+
+  export interface Type {
+    createUser: (
+      parent: {},
+      args: ArgsCreateUser,
+      ctx: Context,
+      info: GraphQLResolveInfo
+    ) => User | null | Promise<User | null>;
   }
 }
 
@@ -69,7 +109,7 @@ export namespace UserResolvers {
     args: {},
     ctx: Context,
     info: GraphQLResolveInfo
-  ) => string | Promise<string>;
+  ) => string | null | Promise<string | null>;
 
   export type EmailResolver = (
     parent: User,
@@ -98,7 +138,7 @@ export namespace UserResolvers {
       args: {},
       ctx: Context,
       info: GraphQLResolveInfo
-    ) => string | Promise<string>;
+    ) => string | null | Promise<string | null>;
 
     email: (
       parent: User,
@@ -111,5 +151,6 @@ export namespace UserResolvers {
 
 export interface Resolvers {
   Query: QueryResolvers.Type;
+  Mutation: MutationResolvers.Type;
   User: UserResolvers.Type;
 }

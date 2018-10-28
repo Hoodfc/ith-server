@@ -1,15 +1,21 @@
 schema {
   query: Query
+  mutation: Mutation
 }
 
 type Query {
   hello: String!
-  msg(text: String!): String!
+  getUser(name: String!): User
+  getAllUsers: [User!]!
+}
+
+type Mutation {
+  createUser(name: String!, email: String, password: String!): User
 }
 
 type User {
   id: ID!
   name: String!
-  password: String!
+  password: String
   email: String!
 }
