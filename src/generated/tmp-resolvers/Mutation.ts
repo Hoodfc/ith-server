@@ -5,5 +5,8 @@ import { MutationResolvers } from "../graphqlgen";
 
 export const Mutation: MutationResolvers.Type = {
   ...MutationResolvers.defaultResolvers,
-  createUser: (parent, args) => null
+  createUser: (parent, args) => null,
+  deleteUser: (parent, args) => false,
+  updateUser: (parent, args) => false,
+  login: (parent, args) => null
 };

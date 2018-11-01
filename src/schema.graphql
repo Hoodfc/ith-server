@@ -10,12 +10,26 @@ type Query {
 }
 
 type Mutation {
-  createUser(name: String!, email: String, password: String!): User
+  createUser(name: String!, email: String, password: String!): Error
+  deleteUser(id: ID!): Boolean!
+  updateUser(id: ID!, update: updateUserInput!): Boolean!
+  login(name: String!, password: String!): Error
+}
+
+type Error {
+  type: String!
+  text: String!
 }
 
 type User {
   id: ID!
   name: String!
+  password: String!
+  email: String
+}
+
+input updateUserInput {
+  name: String
   password: String
-  email: String!
+  email: String
 }

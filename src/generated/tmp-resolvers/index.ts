@@ -5,10 +5,12 @@ import { Resolvers } from "../graphqlgen";
 
 import { Query } from "./Query";
 import { Mutation } from "./Mutation";
+import { Error } from "./Error";
 import { User } from "./User";
 
 export const resolvers: Resolvers = {
   Query,
   Mutation,
+  Error,
   User
 };

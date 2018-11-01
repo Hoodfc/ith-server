@@ -1,23 +1,13 @@
-import bcrypt from "bcrypt";
-import { MutationResolvers, QueryResolvers } from "../generated/graphqlgen";
-import { User } from "./../entity/User";
-export const Query: QueryResolvers.Type = {
-  hello: () => "Hello",
-  getUser: async (_, { name }) => {
-    const user = await User.findOne({ where: { name } });
-    return user;
-  },
-  getAllUsers: () => User.find()
-};
+import { MutationResolvers, QueryResolvers } from "../../generated/graphqlgen";
+import { userCrud } from './crud';
+import { userLogin } from "./login";
+import { userQuery } from './queries';
 
 export const Mutation: MutationResolvers.Type = {
-  createUser: async (_, args) => {
-    const userAlreadyExists = await User.findOne({ where: { name : args.name }});
-    if(userAlreadyExists) {
-        throw Error("Error");
-    }
-    const createdUser = await User.create(args);
-    await createdUser.save();
-    return createdUser;
-  }
+  ...userCrud,
+  login: userLogin
 };
+
+export const Query: QueryResolvers.Type = {
+  ...userQuery
+}

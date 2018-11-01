@@ -1,8 +1,10 @@
+#import Error from "./error.type.graphql"
+
 type User {
     id: ID!
     name: String!
-    password: String
-    email: String!
+    password: String!
+    email: String
 }
 
 type Query {
@@ -11,6 +13,15 @@ type Query {
     getAllUsers: [User!]!    
 }
 
+input updateUserInput {
+    name: String
+    password: String
+    email: String
+}
+
 type Mutation {
-    createUser(name: String!, email: String, password: String!): User
+    createUser(name: String!, email: String, password: String!): Error
+    deleteUser(id: ID!): Boolean!
+    updateUser(id: ID!, update: updateUserInput!): Boolean!
+    login(name: String!, password: String!): Error
 }
