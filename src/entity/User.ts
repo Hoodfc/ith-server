@@ -1,4 +1,5 @@
-import  bcrypt  from "bcrypt";
+import bcrypt from "bcrypt";
+import { IsEmail } from "class-validator";
 import {
   BaseEntity,
   BeforeInsert,
@@ -6,6 +7,7 @@ import {
   Entity,
   PrimaryGeneratedColumn
 } from "typeorm";
+import { userErrorMessages } from "./../utils/error/error.types";
 
 @Entity()
 export class User extends BaseEntity {
@@ -16,10 +18,14 @@ export class User extends BaseEntity {
   name: string;
 
   @Column({ type: "varchar", length: 255, nullable: true })
+  @IsEmail()
   email: string;
 
   @Column({ type: "varchar", length: 255, nullable: false })
   password: string;
+
+  @Column({ type: "varchar", length: 255, nullable: true })
+  role: string;
 
   @BeforeInsert()
   async hashPasswordBeforeInsert() {

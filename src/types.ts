@@ -1,5 +1,7 @@
 export interface Context {
   data: Data;
+  req: any;
+  session: Session
 }
 
 export interface User {
@@ -7,6 +9,7 @@ export interface User {
   name: string;
   password: string;
   email: string;
+  role: string;
 }
 
 export interface Error {
@@ -17,3 +20,10 @@ export interface Error {
 export interface Data {
   users: User[];
 }
+
+export interface Session {
+  id: string,
+  name: string,
+  role: string
+}
+

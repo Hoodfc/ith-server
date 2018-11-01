@@ -68,8 +68,8 @@ export namespace MutationResolvers {
 
   export interface ArgsCreateUser {
     name: string;
-    email: string | null;
     password: string;
+    email: string | null;
   }
 
   export interface ArgsDeleteUser {
@@ -187,7 +187,8 @@ export namespace UserResolvers {
     id: (parent: User) => parent.id,
     name: (parent: User) => parent.name,
     password: (parent: User) => parent.password,
-    email: (parent: User) => parent.email
+    email: (parent: User) => parent.email,
+    role: (parent: User) => parent.role
   };
 
   export type IdResolver = (
@@ -218,6 +219,13 @@ export namespace UserResolvers {
     info: GraphQLResolveInfo
   ) => string | null | Promise<string | null>;
 
+  export type RoleResolver = (
+    parent: User,
+    args: {},
+    ctx: Context,
+    info: GraphQLResolveInfo
+  ) => string | null | Promise<string | null>;
+
   export interface Type {
     id: (
       parent: User,
@@ -241,6 +249,13 @@ export namespace UserResolvers {
     ) => string | Promise<string>;
 
     email: (
+      parent: User,
+      args: {},
+      ctx: Context,
+      info: GraphQLResolveInfo
+    ) => string | null | Promise<string | null>;
+
+    role: (
       parent: User,
       args: {},
       ctx: Context,

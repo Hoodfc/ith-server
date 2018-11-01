@@ -10,7 +10,7 @@ type Query {
 }
 
 type Mutation {
-  createUser(name: String!, email: String, password: String!): Error
+  createUser(name: String!, password: String!, email: String): Error
   deleteUser(id: ID!): Boolean!
   updateUser(id: ID!, update: updateUserInput!): Boolean!
   login(name: String!, password: String!): Error
@@ -26,6 +26,7 @@ type User {
   name: String!
   password: String!
   email: String
+  role: String
 }
 
 input updateUserInput {

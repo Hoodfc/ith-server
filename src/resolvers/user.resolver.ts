@@ -1,7 +1,7 @@
-import { MutationResolvers, QueryResolvers } from "../../generated/graphqlgen";
-import { userCrud } from './crud';
-import { userLogin } from "./login";
-import { userQuery } from './queries';
+import { MutationResolvers, QueryResolvers } from "../generated/graphqlgen";
+import { userCrud } from './user/crud';
+import { userLogin } from "./user/login";
+import { userQuery } from './user/queries';
 
 export const Mutation: MutationResolvers.Type = {
   ...userCrud,
