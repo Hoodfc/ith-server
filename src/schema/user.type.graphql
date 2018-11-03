@@ -1,4 +1,5 @@
 #import Error from "./error.type.graphql"
+#import Date from "./date.type.graphql"
 directive @hasRoles(role: String) on FIELD |  FIELD_DEFINITION
 
 type User {
@@ -7,6 +8,7 @@ type User {
     password: String!
     email: String
     role: String
+    createdAt: Date
 }
 
 type Query {

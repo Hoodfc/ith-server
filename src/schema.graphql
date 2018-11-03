@@ -16,6 +16,8 @@ type Mutation {
   login(name: String!, password: String!): Error
 }
 
+scalar Date
+
 type Error {
   type: String!
   text: String!
@@ -27,6 +29,7 @@ type User {
   password: String!
   email: String
   role: String
+  createdAt: Date
 }
 
 input updateUserInput {
@@ -36,4 +39,5 @@ input updateUserInput {
 }
 
 # import Error from "./error.type.graphql"
+ # import Date from "./date.type.graphql"
 directive @hasRoles(role: String) on FIELD | FIELD_DEFINITION

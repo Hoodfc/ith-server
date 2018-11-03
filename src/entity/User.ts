@@ -4,10 +4,11 @@ import {
   BaseEntity,
   BeforeInsert,
   Column,
+  CreateDateColumn,
   Entity,
-  PrimaryGeneratedColumn
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
 } from "typeorm";
-import { userErrorMessages } from "./../utils/error/error.types";
 
 @Entity()
 export class User extends BaseEntity {
@@ -26,6 +27,12 @@ export class User extends BaseEntity {
 
   @Column({ type: "varchar", length: 255, nullable: true })
   role: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updateAt: Date;
 
   @BeforeInsert()
   async hashPasswordBeforeInsert() {
