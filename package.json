@@ -13,10 +13,12 @@
    "dependencies": {
       "apollo-server-express": "^2.1.0",
       "class-validator": "^0.9.1",
+      "connect-redis": "^3.4.0",
       "cors": "^2.8.4",
       "express": "^4.16.4",
       "express-session": "^1.15.6",
       "graphql": "^14.0.2",
+      "ioredis": "^4.2.0",
       "pg": "^7.6.0",
       "reflect-metadata": "^0.1.10",
       "ts-node": "^7.0.1",
@@ -25,6 +27,7 @@
    },
    "devDependencies": {
       "@types/bcrypt": "^3.0.0",
+      "@types/connect-redis": "^0.0.7",
       "@types/express-session": "^1.15.11",
       "@types/graphql": "^14.0.3",
       "@types/node": "^8.0.29",

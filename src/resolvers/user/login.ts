@@ -23,8 +23,5 @@ export const userLogin = async (_, { name, password }, { session }) => {
     name: foundUser.name,
     role: foundUser.role
   };
-
-  console.log(session.user)
-
   return null;
 };

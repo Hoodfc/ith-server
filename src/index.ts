@@ -1,47 +1,30 @@
 import { ApolloServer } from "apollo-server-express";
 import cors from "cors";
 import express from "express";
-import session from "express-session";
+import Redis from "ioredis";
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import genSchema from "./utils/genSchema";
+import { getSession } from "./utils/genSession";
+import getContext from "./utils/getContext";
 
 const PORT: any = process.env.PORT || 3500;
-const SESSION_SECRET: string = "asdfghjkwo123";
 const app = express();
+const redisClient = new Redis();
 
 app.use(
   cors({
-    origin: "http://localhost:3500",
+    origin: "http://localhost:3000",
     credentials: true
   })
 );
 
-app.use(
-  session({
-    name: "sid",
-    secret: SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      httpOnly: true,
-      secure: false,
-      maxAge: 1000 * 60 * 60 * 7 // 7 days
-    }
-  })
-);
-
-const context: any = (req: any) => {
-  return {
-    req: req.req,
-    session: req.req.session
-  };
-};
+app.use(getSession(redisClient));
 
 const server = new ApolloServer({
   schema: genSchema(),
   playground: true,
-  context
+  context: req => getContext(req, redisClient)
 });
 
 server.applyMiddleware({ app });
