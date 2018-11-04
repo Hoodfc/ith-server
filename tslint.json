@@ -11,7 +11,8 @@
         "no-namespace": false,
         "no-internal-module": false,
         "interface-name": false,
-        "member-access": false
+        "member-access": false,
+        "ordered-imports": false,
     },
     "rulesDirectory": []
 }

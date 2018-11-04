@@ -1,11 +1,8 @@
-import { userErrorMessages } from "../utils/error/error.types";
+import { roleDeniedError } from "./errors";
 
-export const hasRole = (next, source, { role }, { session }) => {
+export const hasRole = (next, _, { role }, { session }) => {
   if (role === session.user.role) {
     return next();
   }
-  return {
-    type: "permission-denied",
-    text: userErrorMessages.roleDenied
-  };
+  return roleDeniedError;
 };

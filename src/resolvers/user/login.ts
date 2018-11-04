@@ -1,24 +1,20 @@
-import bcrypt from "bcrypt";
 import { User } from "./../../entity/User";
-
-const loginError = {
-  type: "wrong-credentials",
-  text: ""
-};
+import { wrongCredentialsError } from "./user.errors";
+import bcrypt from "bcrypt";
 
 export const userLogin = async (_, { name, password }, { session }) => {
-  if(session.user){
+  if (session.user) {
     console.log("Already logged in");
   }
   const foundUser = await User.findOne({ where: { name } });
   if (!foundUser) {
-    return loginError;
+    return wrongCredentialsError;
   }
 
   const validPassword = await bcrypt.compare(password, foundUser.password);
 
   if (!validPassword) {
-    return loginError;
+    return wrongCredentialsError;
   }
 
   session.user = {

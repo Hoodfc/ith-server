@@ -1,20 +1,21 @@
+import {
+  alreadyExistsError,
+  notDeletedError,
+  notUpdatedError
+} from "./user.errors";
 import { User } from "./../../entity/User";
-import { userErrorMessages } from "./../../utils/error/error.types";
-import { USER_ROLE } from "./../../utils/roles";
+import { USER_ROLE } from "../../utils/constants/roles";
 
 export const userCrud = {
   createUser: async (_, args, { session }) => {
     // console.log(context);
-    
+
     const userAlreadyExists = await User.findOne({
       where: { name: args.name }
     });
 
     if (userAlreadyExists) {
-      return {
-        type: "already-exists",
-        text: userErrorMessages.alreadyExists
-      };
+      return alreadyExistsError;
     }
 
     const createdUser = await User.create(args);
@@ -36,10 +37,7 @@ export const userCrud = {
     try {
       await User.delete(id);
     } catch {
-      return {
-        type: "not-deleted",
-        text: "user not deleted"
-      };
+      return notDeletedError;
     }
     return null;
   },
@@ -48,7 +46,7 @@ export const userCrud = {
     try {
       await User.update(id, { ...update });
     } catch (e) {
-      return false;
+      return notUpdatedError;
     }
     return true;
   }

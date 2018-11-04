@@ -12,7 +12,7 @@ type Query {
 type Mutation {
   createUser(name: String!, password: String!, email: String): Error
   deleteUser(id: ID!): Error @hasRole(role: "ADMIN")
-  updateUser(id: ID!, update: updateUserInput!): Boolean!
+  updateUser(id: ID!, update: updateUserInput!): Error
   login(name: String!, password: String!): Error
 }
 

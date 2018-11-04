@@ -7,6 +7,6 @@ export const Mutation: MutationResolvers.Type = {
   ...MutationResolvers.defaultResolvers,
   createUser: (parent, args) => null,
   deleteUser: (parent, args) => null,
-  updateUser: (parent, args) => false,
+  updateUser: (parent, args) => null,
   login: (parent, args) => null
 };

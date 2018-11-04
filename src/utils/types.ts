@@ -14,6 +14,7 @@ export interface User {
   password: string;
   email: string;
   role: string;
+  createdAt: string
 }
 
 export interface Error {
