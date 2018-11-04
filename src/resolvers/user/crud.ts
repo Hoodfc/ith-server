@@ -5,6 +5,7 @@ import { USER_ROLE } from "./../../utils/roles";
 export const userCrud = {
   createUser: async (_, args, { session }) => {
     // console.log(context);
+    
     const userAlreadyExists = await User.findOne({
       where: { name: args.name }
     });
@@ -23,10 +24,10 @@ export const userCrud = {
     session.user = {
       id: createdUser.id,
       name: createdUser.name,
-      role: "USER"
+      role: USER_ROLE
     };
 
-    console.log(session.user);
+    session.save();
 
     return null;
   },
@@ -35,9 +36,12 @@ export const userCrud = {
     try {
       await User.delete(id);
     } catch {
-      return false;
+      return {
+        type: "not-deleted",
+        text: "user not deleted"
+      };
     }
-    return true;
+    return null;
   },
 
   updateUser: async (_, { id, update }) => {

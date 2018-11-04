@@ -98,7 +98,7 @@ export namespace MutationResolvers {
     args: ArgsDeleteUser,
     ctx: Context,
     info: GraphQLResolveInfo
-  ) => boolean | Promise<boolean>;
+  ) => Error | null | Promise<Error | null>;
 
   export type UpdateUserResolver = (
     parent: {},
@@ -127,7 +127,7 @@ export namespace MutationResolvers {
       args: ArgsDeleteUser,
       ctx: Context,
       info: GraphQLResolveInfo
-    ) => boolean | Promise<boolean>;
+    ) => Error | null | Promise<Error | null>;
 
     updateUser: (
       parent: {},
@@ -226,6 +226,13 @@ export namespace UserResolvers {
     info: GraphQLResolveInfo
   ) => string | null | Promise<string | null>;
 
+  export type CreatedAtResolver = (
+    parent: User,
+    args: {},
+    ctx: Context,
+    info: GraphQLResolveInfo
+  ) => string | null | Promise<string | null>;
+
   export interface Type {
     id: (
       parent: User,
@@ -256,6 +263,13 @@ export namespace UserResolvers {
     ) => string | null | Promise<string | null>;
 
     role: (
+      parent: User,
+      args: {},
+      ctx: Context,
+      info: GraphQLResolveInfo
+    ) => string | null | Promise<string | null>;
+
+    createdAt: (
       parent: User,
       args: {},
       ctx: Context,

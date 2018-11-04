@@ -7,6 +7,9 @@ const loginError = {
 };
 
 export const userLogin = async (_, { name, password }, { session }) => {
+  if(session.user){
+    console.log("Already logged in");
+  }
   const foundUser = await User.findOne({ where: { name } });
   if (!foundUser) {
     return loginError;
@@ -23,5 +26,6 @@ export const userLogin = async (_, { name, password }, { session }) => {
     name: foundUser.name,
     role: foundUser.role
   };
+
   return null;
 };

@@ -4,5 +4,9 @@
 import { UserResolvers } from "../graphqlgen";
 
 export const User: UserResolvers.Type = {
-  ...UserResolvers.defaultResolvers
+  ...UserResolvers.defaultResolvers,
+
+  createdAt: parent => {
+    throw new Error("Resolver not implemented");
+  }
 };

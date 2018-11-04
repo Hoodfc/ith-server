@@ -15,7 +15,7 @@ const redisClient = new Redis();
 app.use(
   cors({
     origin: "http://localhost:3000",
-    credentials: true
+    credentials: true,
   })
 );
 
@@ -24,7 +24,7 @@ app.use(getSession(redisClient));
 const server = new ApolloServer({
   schema: genSchema(),
   playground: true,
-  context: req => getContext(req, redisClient)
+  context: req => getContext(req, redisClient),
 });
 
 server.applyMiddleware({ app });

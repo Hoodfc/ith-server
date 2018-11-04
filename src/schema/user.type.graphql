@@ -1,6 +1,6 @@
+directive @hasRole(role: String) on FIELD |  FIELD_DEFINITION
 #import Error from "./error.type.graphql"
 #import Date from "./date.type.graphql"
-directive @hasRoles(role: String) on FIELD |  FIELD_DEFINITION
 
 type User {
     id: ID!
@@ -25,7 +25,7 @@ input updateUserInput {
 
 type Mutation {
     createUser(name: String!, password: String!, email: String): Error
-    deleteUser(id: ID!): Boolean! @hasRoles(role: "ADMIN")
+    deleteUser(id: ID!): Error @hasRole(role: "ADMIN")
     updateUser(id: ID!, update: updateUserInput!): Boolean!
     login(name: String!, password: String!): Error
 }

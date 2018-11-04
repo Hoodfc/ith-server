@@ -11,7 +11,7 @@ type Query {
 
 type Mutation {
   createUser(name: String!, password: String!, email: String): Error
-  deleteUser(id: ID!): Boolean! @hasRoles(role: "ADMIN")
+  deleteUser(id: ID!): Error @hasRole(role: "ADMIN")
   updateUser(id: ID!, update: updateUserInput!): Boolean!
   login(name: String!, password: String!): Error
 }
@@ -38,6 +38,4 @@ input updateUserInput {
   email: String
 }
 
-# import Error from "./error.type.graphql"
- # import Date from "./date.type.graphql"
-directive @hasRoles(role: String) on FIELD | FIELD_DEFINITION
+directive @hasRole(role: String) on FIELD | FIELD_DEFINITION
