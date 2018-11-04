@@ -12,19 +12,18 @@ export const notEmailError = {
 
 export const notDeletedText = "User could not be deleted";
 export const notDeletedError = {
-    type: "not-deleted",
-    text: notDeletedText
+  type: "not-deleted",
+  text: notDeletedText
 };
 
 export const notUpdatedText = "User could not be updated";
 export const notUpdatedError = {
-    type: "not-updated",
-    text: notUpdatedText
-}
-
-export const wrongCredentialsText = "Wrong username or password"
-export const wrongCredentialsError = {
-    type: "wrong-credentials",
-    text: wrongCredentialsText
+  type: "not-updated",
+  text: notUpdatedText
 };
 
+export const wrongCredentialsText = "Wrong username or password";
+export const wrongCredentialsError = {
+  type: "wrong-credentials",
+  text: wrongCredentialsText
+};

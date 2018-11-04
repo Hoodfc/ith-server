@@ -8,7 +8,7 @@ export default {
       return new Date(value);
     },
     serialize: value => {
-      return value.getTime();
+      return value.toLocaleDateString("en-US");
     },
     parseLiteral(ast) {
       if (ast.kind === Kind.INT) {

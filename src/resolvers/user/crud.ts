@@ -8,8 +8,6 @@ import { USER_ROLE } from "../../utils/constants/roles";
 
 export const userCrud = {
   createUser: async (_, args, { session }) => {
-    // console.log(context);
-
     const userAlreadyExists = await User.findOne({
       where: { name: args.name }
     });
@@ -27,9 +25,6 @@ export const userCrud = {
       name: createdUser.name,
       role: USER_ROLE
     };
-
-    session.save();
-
     return null;
   },
 
@@ -48,6 +43,6 @@ export const userCrud = {
     } catch (e) {
       return notUpdatedError;
     }
-    return true;
+    return null;
   }
 };

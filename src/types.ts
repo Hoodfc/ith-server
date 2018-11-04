@@ -1,11 +1,11 @@
 import { Request } from "express";
-import { Redis } from 'ioredis';
+import { Redis } from "ioredis";
 
 export interface Context {
   data: Data;
   req: Request;
-  session: Session
-  redis: Redis
+  session: Session;
+  redis: Redis;
 }
 
 export interface User {
@@ -14,7 +14,7 @@ export interface User {
   password: string;
   email: string;
   role: string;
-  createdAt: string
+  createdAt: Date;
 }
 
 export interface Error {
@@ -27,8 +27,7 @@ export interface Data {
 }
 
 export interface Session {
-  id?: string,
-  name?: string,
-  role?: string
+  id?: string;
+  name?: string;
+  role?: string;
 }
-

@@ -36,6 +36,7 @@ input updateUserInput {
   name: String
   password: String
   email: String
+  role: String
 }
 
 directive @hasRole(role: String) on FIELD | FIELD_DEFINITION

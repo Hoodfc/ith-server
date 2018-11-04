@@ -5,7 +5,7 @@ import { userQuery } from './user/queries';
 
 export const Mutation: MutationResolvers.Type = {
   ...userCrud,
-  login: userLogin
+  login: userLogin,
 };
 
 export const Query: QueryResolvers.Type = {
